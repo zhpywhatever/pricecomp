@@ -38,7 +38,8 @@
     "web-vitals": "^1.1.0",
     "yup": "^0.32.9"
   },
-  "scripts": {
+  "scripts": {  
+    "dev": "react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

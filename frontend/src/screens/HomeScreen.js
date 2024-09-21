@@ -82,7 +82,7 @@ const HomeScreen = ({ match }) => {
 
   const [keyword, setKeyword] = useState('');
 
-  const filteredProducts = allProducts.filter(
+  const filteredProducts = allProducts?.filter(
     product =>
       product.name.toLowerCase().includes(keyword) ||
       product.category.toLowerCase().includes(keyword) ||
@@ -94,7 +94,7 @@ const HomeScreen = ({ match }) => {
   useEffect(() => {
     console.log(clickedCategory);
   }, [clickedCategory]);
-  const filteredCategoryProducts = allProducts.filter(product =>
+  const filteredCategoryProducts = allProducts?.filter(product =>
     product.category.toLowerCase().includes(clickedCategory.toLowerCase())
   );
 
