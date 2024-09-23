@@ -49,7 +49,7 @@ const ProductCarousel = () => {
       </Dialog> */}
 
       <Slider {...SliderProps}>
-        {products.map(product => (
+        {products?.map(product => (
           <div
             key={product._id}
             // onClick={() => handleDialogOpen(product)}

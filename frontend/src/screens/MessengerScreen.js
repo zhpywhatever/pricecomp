@@ -185,7 +185,7 @@ const MessengerScreen = ({ history }) => {
               placeholder="Search for friends"
               className={classes.chatMenuInput}
             />
-            {conversations.map(c => (
+            {conversations?.map(c => (
               <div onClick={() => setCurrentChat(c)} key={c._id}>
                 <Conversation conversation={c} currentUser={userInfo} />
               </div>
@@ -198,7 +198,7 @@ const MessengerScreen = ({ history }) => {
               {currentChat ? (
                 <>
                   <div className={classes.chatBoxTop}>
-                    {messages.map(m => (
+                    {messages?.map(m => (
                       <div ref={scrollRef} key={m._id}>
                         <Message message={m} own={m.sender === userInfo._id} />
                       </div>

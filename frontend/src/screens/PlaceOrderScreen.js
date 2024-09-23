@@ -118,7 +118,7 @@ export default function PlaceOrderScreen({ history }) {
                 <Message variant="info">您的购物车是空的</Message>
               ) : (
                 <>
-                  {cartItems.map((item, index) => (
+                  {cartItems?.map((item, index) => (
                     <ListItem className={classes.listItem} key={item.name}>
                       <ListItemAvatar className={classes.avatar}>
                         <Avatar

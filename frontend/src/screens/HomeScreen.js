@@ -126,7 +126,7 @@ const HomeScreen = ({ match }) => {
       <Meta />
       {loading ? (
         <Typography variant="h2" component="h1" className={classes.title}>
-          {[1, 2, 3, 4, 5].map(n => (
+          {[1, 2, 3, 4, 5]?.map(n => (
             <SkeletonArticle key={n}></SkeletonArticle>
           ))}
         </Typography>
@@ -168,18 +168,18 @@ const HomeScreen = ({ match }) => {
             animate="visible"
           >
             {clickedCategory
-              ? filteredCategoryProducts.map(product => (
+              ? filteredCategoryProducts?.map(product => (
                   <div key={product._id}>
                     <Product product={product} />
                   </div>
                 ))
               : keyword
-              ? filteredProducts.map(product => (
+              ? filteredProducts?.map(product => (
                   <div key={product._id}>
                     <Product product={product} />
                   </div>
                 ))
-              : products.map(product => (
+              : products?.map(product => (
                   <div key={product._id}>
                     <Product product={product} />
                   </div>

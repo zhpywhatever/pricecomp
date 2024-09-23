@@ -117,7 +117,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       <Divider />
       <Box style={{ padding: '16px' }}>
         <List>
-          {items.map(item => (
+          {items?.map(item => (
             <NavItem
               href={item.href}
               key={item.title}

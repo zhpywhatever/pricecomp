@@ -145,7 +145,7 @@ const CartScreen = ({ match, location, history }) => {
               <Grid item xs={12} sm={12} md={7}>
                 <div className={classes.demo}>
                   <List>
-                    {cartItems.map(item => (
+                    {cartItems?.map(item => (
                       <div key={item.product}>
                         <ListItem className={classes.item}>
                           <ListItemAvatar className={classes.avatar}>
@@ -183,7 +183,7 @@ const CartScreen = ({ match, location, history }) => {
                                 id: 'filled-qty',
                               }}
                             >
-                              {[...Array(item.countInStock).keys()].map(x => (
+                              {[...Array(item.countInStock).keys()]?.map(x => (
                                 <option key={x + 1} value={x + 1}>
                                   {x + 1}
                                 </option>

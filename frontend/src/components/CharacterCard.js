@@ -39,11 +39,11 @@ const CharacterCard = ({ character }) => {
           Alias:
           <br />
         </Typography>
-        {character.alias.map(alias => (
+        {character.alias?.map(alias => (
           <Chip key={alias} style={{ margin: 3 }} size="small" label={alias} />
         ))}
         <Typography color="textSecondary">Abilities:</Typography>
-        {character.abilities.map(ability => (
+        {character.abilities?.map(ability => (
           <Chip
             key={ability}
             style={{ margin: 3 }}

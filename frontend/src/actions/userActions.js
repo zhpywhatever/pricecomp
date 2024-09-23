@@ -34,7 +34,13 @@ import {
   ADMIN_USER_DETAIL_RESET,
   USER_LIST_RESET,
 } from '../constants/adminConstants';
-export const login = (email, password) => async dispatch => {
+
+const axiosInstance = axios.create({
+  baseURL: 'http://localhost:8888', // 设置基础 URL
+  timeout: 10000,                    // 可选：请求超时时间
+});
+
+export const login = (username, password) => async dispatch => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST });
 
@@ -45,14 +51,15 @@ export const login = (email, password) => async dispatch => {
     // }, 3000);
     const config = {
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
     };
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       '/api/users/login',
-      { email, password },
+      { username, password },
       config
     );
+    
 
     dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
     localStorage.setItem('userInfo', JSON.stringify(data));
@@ -85,7 +92,7 @@ export const register = (name, email, password) => async dispatch => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       '/api/users',
       { name, email, password },
       config
@@ -118,7 +125,7 @@ export const getUserDetails = id => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.get(`/api/users/${id}`, config);
+    const { data } = await axiosInstance.get(`/api/users/${id}`, config);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
@@ -146,7 +153,7 @@ export const updateUserProfile = user => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
-    const { data } = await axios.put(`/api/users/profile`, user, config);
+    const { data } = await axiosInstance.put(`/api/users/profile`, user, config);
 
     dispatch({ type: USER_UPDATE_PROFILE_SUCCESS, payload: data });
   } catch (error) {
@@ -165,7 +172,7 @@ export const sendFindPasswordEmail = email => async dispatch => {
     dispatch({ type: USER_FORGOTPASSWORD_REQUEST });
 
     // setTimeout(async () => {
-    //   const { data } = await axios.get('/api/products');
+    //   const { data } = await axiosInstance.get('/api/products');
 
     //   dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     // }, 3000);
@@ -174,7 +181,7 @@ export const sendFindPasswordEmail = email => async dispatch => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.post(
+    const { data } = await axiosInstance.post(
       '/api/auth/forgotpassword',
       { email },
       config
@@ -196,7 +203,7 @@ export const resetPassword = (resettoken, password) => async dispatch => {
     dispatch({ type: USER_RESETPASSWORD_REQUEST });
 
     // setTimeout(async () => {
-    //   const { data } = await axios.get('/api/products');
+    //   const { data } = await axiosInstance.get('/api/products');
 
     //   dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
     // }, 3000);
@@ -205,7 +212,7 @@ export const resetPassword = (resettoken, password) => async dispatch => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `/api/auth/resetpassword/${resettoken}`,
       { password },
       config
@@ -230,7 +237,7 @@ export const follow = (id, followerId) => async dispatch => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `/api/users/${id}/follow`,
       { userId: followerId },
       config
@@ -254,7 +261,7 @@ export const unfollow = (id, followerId) => async dispatch => {
         'Content-Type': 'application/json',
       },
     };
-    const { data } = await axios.put(
+    const { data } = await axiosInstance.put(
       `/api/users/${id}/unfollow`,
       { userId: followerId },
       config

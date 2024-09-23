@@ -32,7 +32,7 @@ const UserListResults = ({ users, ...rest }) => {
     let newSelectedCustomerIds;
 
     if (event.target.checked) {
-      newSelectedCustomerIds = users.map(user => user.id);
+      newSelectedCustomerIds = users?.map(user => user.id);
     } else {
       newSelectedCustomerIds = [];
     }
@@ -105,7 +105,7 @@ const UserListResults = ({ users, ...rest }) => {
               {users
                 .filter(user => user.role !== 'admin')
                 .slice(0, limit)
-                .map(customer => (
+                ?.map(customer => (
                   <TableRow
                     hover
                     key={customer._id}

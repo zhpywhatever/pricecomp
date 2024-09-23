@@ -246,7 +246,7 @@ const ProductListScreen = ({ history, match }) => {
                   initial="hidden"
                   animate="visible"
                 >
-                  {products.map(product => (
+                  {products?.map(product => (
                     <Grid item key={product._id} lg={4} md={6} xs={12}>
                       <Card
                         style={{

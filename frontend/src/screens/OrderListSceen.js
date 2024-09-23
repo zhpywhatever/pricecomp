@@ -58,7 +58,7 @@ const OrderListScreen = ({ history }) => {
     let newSelectedCustomerIds;
 
     if (event.target.checked) {
-      newSelectedCustomerIds = orders.map(user => user.id);
+      newSelectedCustomerIds = orders?.map(user => user.id);
     } else {
       newSelectedCustomerIds = [];
     }
@@ -172,7 +172,7 @@ const OrderListScreen = ({ history }) => {
                             </TableRow>
                           </TableHead>
                           <TableBody>
-                            {orders.slice(0, limit).map(order => (
+                            {orders.slice(0, limit)?.map(order => (
                               <TableRow
                                 hover
                                 key={order._id}

@@ -80,7 +80,7 @@ const MyOrders = ({ history }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {myOrders.map(order => (
+              {myOrders?.map(order => (
                 <TableRow hover key={order._id}>
                   <TableCell>{order._id}</TableCell>
                   {/* <TableCell>{order.customer.name}</TableCell> */}

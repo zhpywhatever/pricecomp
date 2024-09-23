@@ -3,8 +3,13 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from routers import productRouter, userRouter
+from database import init_db
 
 app = FastAPI()
+
+app.include_router(productRouter.router)
+app.include_router(userRouter.router)
 
 # 允许 CORS
 app.add_middleware(
@@ -18,6 +23,13 @@ app.add_middleware(
 # 设置静态文件目录
 #app.mount("/images", StaticFiles(directory="backend/public/images"), name="images")
 #app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
+
+# 在应用启动时创建数据库表
+@app.on_event("startup")
+def startup():
+    init_db()
+
 
 # 文件上传路由
 @app.post("/api/upload")
@@ -48,4 +60,6 @@ async def http_exception_handler(request, exc):
 # 启动 FastAPI
 if __name__ == "__main__":
     import uvicorn
+
+    init_db()
     uvicorn.run(app, host="0.0.0.0", port=8888)

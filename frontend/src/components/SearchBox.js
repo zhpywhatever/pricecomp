@@ -117,7 +117,7 @@ const SearchBox = ({ clickedCategory, setClickedCategory, ...res }) => {
   const { allProducts } = productList;
   const allCategories = () => {
     const categoryArray = [];
-    allProducts.map(product => categoryArray.push(product.category));
+    allProducts?.map(product => categoryArray.push(product.category));
     return [...new Set(categoryArray)];
   };
 
@@ -192,7 +192,7 @@ const SearchBox = ({ clickedCategory, setClickedCategory, ...res }) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          {allCategories().map(category => (
+          {allCategories()?.map(category => (
             <StyledMenuItem
               data-value={category}
               onClick={clickIngredient.bind(this, category)}

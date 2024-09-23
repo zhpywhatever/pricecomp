@@ -90,7 +90,7 @@ const Slider = ({
         pageTransition={pageTransition}
         ref={sliderRef}
       >
-        {children.map((child, i) => (
+        {children?.map((child, i) => (
           <SliderItem
             key={i}
             slideMargin={slideMargin}

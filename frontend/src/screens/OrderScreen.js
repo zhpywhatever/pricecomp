@@ -142,7 +142,7 @@ export default function OrderScreen({ match, history }) {
                 <Message variant="info">您的订单是空的</Message>
               ) : (
                 <>
-                  {order.orderItems.map((item, index) => (
+                  {order.orderItems?.map((item, index) => (
                     <ListItem className={classes.listItem} key={item.name}>
                       <ListItemAvatar className={classes.avatar}>
                         <Avatar

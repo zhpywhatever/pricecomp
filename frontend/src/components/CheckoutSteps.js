@@ -29,7 +29,7 @@ export default function CheckoutSteps({ activeStep }) {
   return (
     <div className={classes.root}>
       <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map(label => (
+        {steps?.map(label => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
           </Step>

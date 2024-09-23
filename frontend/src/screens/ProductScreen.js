@@ -223,7 +223,7 @@ const ProductScreen = ({ history, match }) => {
       </IconButton>
 
       {loading ? (
-        [1, 2, 3, 4, 5].map(n => <SkeletonArticle key={n}></SkeletonArticle>)
+        [1, 2, 3, 4, 5]?.map(n => <SkeletonArticle key={n}></SkeletonArticle>)
       ) : error ? (
         <Message variant="error">{error}</Message>
       ) : (
@@ -326,7 +326,7 @@ const ProductScreen = ({ history, match }) => {
                               id: 'filled-qty',
                             }}
                           >
-                            {[...Array(product.countInStock).keys()].map(x => (
+                            {[...Array(product.countInStock).keys()]?.map(x => (
                               <option key={x + 1} value={x + 1}>
                                 {x + 1}
                               </option>
@@ -403,7 +403,7 @@ const ProductScreen = ({ history, match }) => {
                       </>
                     ) : (
                       <List style={{ width: '100%' }}>
-                        {product.reviews.map(review => (
+                        {product.reviews?.map(review => (
                           <motion.div
                             key={review._id}
                             initial={{ opacity: 0 }}
@@ -555,7 +555,7 @@ const ProductScreen = ({ history, match }) => {
                                 error={Boolean(touched.rating && errors.rating)}
                                 helperText={touched.rating && errors.rating}
                               >
-                                {ratingOption.map(option => (
+                                {ratingOption?.map(option => (
                                   <MenuItem
                                     key={option.rating}
                                     value={option.rating}
@@ -632,7 +632,7 @@ const ProductScreen = ({ history, match }) => {
                   </div>
                   <Divider />
                   <div className={classes.recommendedPosts}>
-                    {relatedProducts.map(
+                    {relatedProducts?.map(
                       ({ rating, price, numReviews, name, image, _id }) => (
                         <div
                           style={{
